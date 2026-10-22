@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Memes Into Money ($MIM) — Don't forget why we are all here</title>
+  <meta name="description" content="Memes Into Money ($MIM) is a Solana wizard meme. Copy the contract, buy $MIM, and don't forget why we are all here." />
+  <meta name="theme-color" content="#07010f" />
+  <link rel="icon" href="logo.jpg" />
+  <meta property="og:title" content="Memes Into Money ($MIM)" />
+  <meta property="og:description" content="Don't forget why we are all here." />
+  <meta property="og:image" content="banner.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Memes Into Money ($MIM)" />
+  <meta name="twitter:description" content="Don't forget why we are all here." />
+  <meta name="twitter:image" content="banner.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=MedievalSharp&family=Nunito:wght@400;600;700;800&family=Pacifico&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            void: "#07010f",
+            ink: "#111111",
+            panel: "#140a22",
+            spell: "#b6ff3c",
+            aqua: "#5cefff",
+            gold: "#f6c445",
+            cream: "#f6f1e4",
+          },
+          fontFamily: {
+            sans: ["Nunito", "ui-sans-serif", "system-ui", "sans-serif"],
+            meme: ['"Luckiest Guy"', "cursive"],
+            script: ["Pacifico", "cursive"],
+            wizard: ["MedievalSharp", "cursive"],
+          },
+          boxShadow: {
+            sticker: "5px 5px 0 #111111",
+            stickerlg: "8px 8px 0 #111111",
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html { background: #07010f; scroll-behavior: smooth; }
+    ::selection { background: #b6ff3c; color: #102006; }
+    section[id] { scroll-margin-top: 5.75rem; }
+
+    .bg-photo, .bg-wash, .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+    }
+    .bg-photo {
+      z-index: 0;
+      background: url("banner.jpg") center / cover no-repeat;
+      filter: blur(18px) saturate(1.4) brightness(0.32);
+      transform: scale(1.12);
+    }
+    .bg-wash {
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 48% at 50% -8%, rgba(109, 40, 217, 0.5), transparent 68%),
+        radial-gradient(ellipse 34% 42% at 100% 10%, rgba(92, 239, 255, 0.14), transparent 70%),
+        radial-gradient(ellipse 38% 48% at 0% 74%, rgba(126, 34, 206, 0.36), transparent 72%),
+        radial-gradient(ellipse 46% 30% at 80% 100%, rgba(182, 255, 60, 0.1), transparent 70%),
+        linear-gradient(180deg, rgba(7, 1, 15, 0.8), rgba(7, 1, 15, 0.92));
+    }
+    .stars {
+      z-index: 0;
+      background-image:
+        radial-gradient(1.4px 1.4px at 20px 30px, #fff, transparent),
+        radial-gradient(1.3px 1.3px at 90px 130px, rgba(182, 255, 60, 0.95), transparent),
+        radial-gradient(1px 1px at 170px 60px, #fff, transparent),
+        radial-gradient(1.6px 1.6px at 130px 190px, rgba(92, 239, 255, 0.9), transparent),
+        radial-gradient(1px 1px at 230px 40px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1.2px 1.2px at 40px 210px, rgba(246, 196, 69, 0.9), transparent);
+      background-size: 270px 240px;
+      animation: twinkle 5.5s ease-in-out infinite alternate;
+    }
+
+    .cq { container-type: inline-size; }
+    .hero-meme {
+      font-size: clamp(1.85rem, 10.2cqw, 6.5rem);
+      line-height: 0.86;
+      -webkit-text-stroke: clamp(3px, 0.45cqw, 8px) #111;
+      paint-order: stroke fill;
+      filter: drop-shadow(0 5px 0 #145214) drop-shadow(0 0 16px rgba(182, 255, 60, 0.65));
+    }
+    .hero-script {
+      font-size: clamp(2.8rem, 16cqw, 7.6rem);
+      line-height: 0.9;
+    }
+    .script-title {
+      text-shadow:
+        0 3px 0 #042830,
+        2px 2px 0 #042830,
+        -2px 1px 0 #042830,
+        0 0 18px rgba(92, 239, 255, 0.65);
+    }
+
+    .sign {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      padding: 0.95rem 1.7rem 0.85rem;
+      color: #1a1206;
+      background: linear-gradient(180deg, #ffe08a 0%, #f0b429 40%, #d08912 100%);
+      border: 4px solid #3b250c;
+      border-radius: 12px;
+      box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.5), inset 0 -8px 12px rgba(120, 60, 0, 0.25), 0 7px 0 #3b250c;
+      transform: rotate(-1.5deg);
+    }
+    .sign p {
+      font-family: "Luckiest Guy", cursive;
+      font-size: clamp(1.15rem, 4.6cqw, 2rem);
+      line-height: 1.02;
+    }
+    .nail {
+      position: absolute;
+      top: 9px;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, #f3f3f3, #777 42%, #222 72%);
+      box-shadow: 0 1px 0 #000;
+    }
+    .nail-l { left: 10px; }
+    .nail-r { right: 10px; }
+
+    .buy-btn, .chart-btn, .copy-btn {
+      border: 3px solid #111;
+      font-family: "Luckiest Guy", cursive;
+      letter-spacing: 0.03em;
+      text-align: center;
+    }
+    .buy-btn {
+      color: #102006;
+      background: linear-gradient(#d9ff6e, #5dff2f 42%, #1ea81a);
+      border-radius: 999px;
+      box-shadow: 4px 4px 0 #111, 0 0 18px rgba(124, 255, 58, 0.45);
+    }
+    .buy-btn:hover { filter: brightness(1.06); }
+    .buy-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 12px rgba(124, 255, 58, 0.45); }
+    .glow-pulse { animation: pulse-glow 2.4s ease-in-out infinite; }
+    .chart-btn {
+      color: #e9fdff;
+      background: #12081c;
+      border-color: #5cefff;
+      border-radius: 999px;
+      box-shadow: 4px 4px 0 #111, 0 0 16px rgba(92, 239, 255, 0.35);
+    }
+    .chart-btn:hover { background: #08222a; }
+    .chart-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 12px rgba(92, 239, 255, 0.35); }
+    .copy-btn {
+      color: #102006;
+      background: #b6ff3c;
+      border-radius: 999px;
+      box-shadow: 2px 2px 0 #111;
+      font-family: Nunito, sans-serif;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    .copy-btn:hover { background: #d2ff7a; }
+    .copy-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 #111; }
+
+    .hat { position: relative; width: 74px; height: 64px; margin-inline: auto; }
+    .hat::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 12px;
+      transform: translateX(-50%);
+      border-left: 26px solid transparent;
+      border-right: 26px solid transparent;
+      border-bottom: 46px solid #63f036;
+      filter: drop-shadow(2px 3px 0 #111);
+    }
+    .hat::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 74px;
+      height: 16px;
+      background: #f6c445;
+      border: 3px solid #111;
+      border-radius: 5px;
+      box-shadow: 3px 3px 0 #111;
+    }
+
+    .ticker-wrap { overflow: hidden; }
+    .ticker { display: flex; width: max-content; animation: ticker 32s linear infinite; }
+    .ticker-group { display: flex; align-items: center; gap: 1.1rem; padding-right: 1.1rem; white-space: nowrap; }
+    .ticker-wrap:hover .ticker { animation-play-state: paused; }
+
+    .floaty { animation: floaty 5.5s ease-in-out infinite; }
+    .spin-slow { animation: spin-slow 22s linear infinite; }
+    .spark { animation: sparkle 2.8s ease-in-out infinite; }
+
+    .burger { display: grid; gap: 5px; }
+    .burger span { display: block; width: 20px; height: 2px; background: #f6c445; transition: transform 0.2s ease, opacity 0.2s ease; }
+    #menuBtn.is-open .burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #menuBtn.is-open .burger span:nth-child(2) { opacity: 0; }
+    #menuBtn.is-open .burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .skip {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      z-index: 80;
+      border-radius: 999px;
+      background: #b6ff3c;
+      color: #102006;
+      padding: 0.5rem 1rem;
+      font-weight: 800;
+    }
+    .skip:focus { top: 1rem; }
+
+    @keyframes twinkle { from { opacity: 0.35; } to { opacity: 0.85; } }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0) rotate(-2.5deg); }
+      50% { transform: translateY(-12px) rotate(-0.4deg); }
+    }
+    @keyframes spin-slow { to { transform: rotate(360deg); } }
+    @keyframes sparkle {
+      0%, 100% { opacity: 0.35; transform: scale(0.8) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1.15) rotate(14deg); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 4px 4px 0 #111, 0 0 12px rgba(124, 255, 58, 0.4); }
+      50% { box-shadow: 4px 4px 0 #111, 0 0 28px rgba(124, 255, 58, 0.9); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .stars, .ticker, .floaty, .spin-slow, .spark, .glow-pulse { animation: none; }
+    }
+  </style>
+</head>
+<body class="bg-void font-sans text-cream antialiased">
+  <a class="skip" href="#top">Skip to content</a>
+  <div class="bg-photo" aria-hidden="true"></div>
+  <div class="bg-wash" aria-hidden="true"></div>
+  <div class="stars" aria-hidden="true"></div>
+
+  <div class="relative z-10">
+    <header class="sticky top-0 z-50 border-b border-gold/30 bg-[#07010f]/80 backdrop-blur-xl">
+      <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
+        <a href="#top" class="flex items-center gap-2.5">
+          <img src="logo.jpg" alt="" width="400" height="400" class="h-11 w-11 rounded-xl border-2 border-ink bg-white object-cover" />
+          <span class="leading-none">
+            <span class="block font-meme text-[1.7rem] text-spell drop-shadow-[0_2px_0_#145214]">MIM</span>
+            <span class="hidden text-[0.68rem] font-extrabold uppercase tracking-[0.16em] text-aqua lg:block">Memes Into Money</span>
+          </span>
+        </a>
+
+        <nav class="hidden items-center gap-7 lg:flex" aria-label="Primary">
+          <a href="#reminder" class="font-extrabold text-cream underline-offset-4 transition hover:text-spell hover:underline hover:decoration-spell">Reminder</a>
+          <a href="#how-to-buy" class="font-extrabold text-cream underline-offset-4 transition hover:text-spell hover:underline hover:decoration-spell">How to Buy</a>
+          <a href="#chart" class="font-extrabold text-cream underline-offset-4 transition hover:text-spell hover:underline hover:decoration-spell">Chart</a>
+        </nav>
+
+        <div class="hidden items-center gap-2 lg:flex">
+          <a href="https://t.me/MIMsol" target="_blank" rel="noopener noreferrer" class="inline-block h-11 w-11 overflow-hidden rounded-full border-2 border-white/50 transition hover:-rotate-6 hover:scale-110 hover:border-spell hover:shadow-[0_0_16px_rgba(182,255,60,0.5)]">
+            <img src="tg.png" alt="Telegram" width="975" height="997" class="h-full w-full object-cover" />
+          </a>
+          <a href="https://x.com/MIMsol" target="_blank" rel="noopener noreferrer" class="inline-block h-11 w-11 overflow-hidden rounded-full border-2 border-white/50 transition hover:rotate-6 hover:scale-110 hover:border-spell hover:shadow-[0_0_16px_rgba(182,255,60,0.5)]">
+            <img src="x.png" alt="X" width="554" height="554" class="h-full w-full object-cover" />
+          </a>
+          <a class="buy-btn px-4 py-2 text-lg" href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA" target="_blank" rel="noopener noreferrer">Buy Now</a>
+        </div>
+
+        <button type="button" id="menuBtn" class="grid h-11 w-11 place-items-center rounded-xl border-2 border-gold/70 bg-black/40 lg:hidden" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <span class="burger" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+      </div>
+
+      <div id="mobileMenu" class="hidden border-t border-white/10 px-4 py-4 lg:hidden">
+        <div class="grid gap-1">
+          <a href="#reminder" class="rounded-xl px-3 py-3 font-extrabold text-cream hover:bg-white/5 hover:text-spell">Reminder</a>
+          <a href="#how-to-buy" class="rounded-xl px-3 py-3 font-extrabold text-cream hover:bg-white/5 hover:text-spell">How to Buy</a>
+          <a href="#chart" class="rounded-xl px-3 py-3 font-extrabold text-cream hover:bg-white/5 hover:text-spell">Chart</a>
+        </div>
+        <div class="mt-4 flex items-center gap-3">
+          <a href="https://t.me/MIMsol" target="_blank" rel="noopener noreferrer" class="inline-block h-12 w-12 overflow-hidden rounded-full border-2 border-white/50">
+            <img src="tg.png" alt="Telegram" width="975" height="997" class="h-full w-full object-cover" />
+          </a>
+          <a href="https://x.com/MIMsol" target="_blank" rel="noopener noreferrer" class="inline-block h-12 w-12 overflow-hidden rounded-full border-2 border-white/50">
+            <img src="x.png" alt="X" width="554" height="554" class="h-full w-full object-cover" />
+          </a>
+        </div>
+        <a class="buy-btn mt-4 block px-4 py-3 text-xl" href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA" target="_blank" rel="noopener noreferrer">Buy Now</a>
+      </div>
+    </header>
+
+    <div class="ticker-wrap border-y-[3px] border-ink bg-black/60" aria-hidden="true">
+      <div class="ticker py-3 font-meme text-lg sm:text-xl">
+        <p class="ticker-group">
+          <span class="text-spell">DON'T FORGET WHY WE ARE ALL HERE</span><span class="text-gold">✦</span>
+          <span class="text-aqua">$MIM</span><span class="text-gold">✦</span>
+          <span class="text-spell">MEMES INTO MONEY</span><span class="text-gold">✦</span>
+          <span class="text-aqua">JOIN US</span><span class="text-gold">✦</span>
+          <span class="text-spell">SOLANA</span><span class="text-gold">✦</span>
+        </p>
+        <p class="ticker-group">
+          <span class="text-spell">DON'T FORGET WHY WE ARE ALL HERE</span><span class="text-gold">✦</span>
+          <span class="text-aqua">$MIM</span><span class="text-gold">✦</span>
+          <span class="text-spell">MEMES INTO MONEY</span><span class="text-gold">✦</span>
+          <span class="text-aqua">JOIN US</span><span class="text-gold">✦</span>
+          <span class="text-spell">SOLANA</span><span class="text-gold">✦</span>
+        </p>
+      </div>
+    </div>
+
+    <main>
+      <section id="top" class="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-16 pt-10 sm:px-5 lg:grid-cols-[0.86fr_1.14fr] lg:gap-14 lg:pt-16">
+        <div class="floaty relative mx-auto w-[min(100%,340px)]">
+          <div class="spin-slow pointer-events-none absolute -inset-4 rounded-[2.3rem] border-2 border-dashed border-spell/70" aria-hidden="true"></div>
+          <svg class="spark absolute -left-2 top-8 h-7 w-7 text-gold" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0l2.4 8.2L22.5 12l-8.1 2.2L12 24l-2.4-9.8L1.5 12l8.1-3.8z"/></svg>
+          <svg class="spark absolute -right-1 bottom-10 h-6 w-6 text-aqua" style="animation-delay: .8s" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0l2.4 8.2L22.5 12l-8.1 2.2L12 24l-2.4-9.8L1.5 12l8.1-3.8z"/></svg>
+          <img src="logo.jpg" width="400" height="400" alt="MIM mascot, a green wizard hat waving with a Solana staff" class="relative w-full rounded-[1.7rem] border-[3px] border-ink bg-white p-1.5 shadow-[8px_8px_0_#111,0_0_42px_rgba(182,255,60,0.5)]" />
+        </div>
+
+        <div class="cq text-center lg:text-left">
+          <p class="font-wizard text-2xl text-gold">On Solana</p>
+          <h1 class="mt-1">
+            <span class="hero-meme block font-meme text-spell">Memes Into</span>
+            <span class="hero-script script-title block font-script text-aqua">Money</span>
+          </h1>
+          <p class="mt-2 font-meme text-3xl tracking-wide text-white drop-shadow-[0_3px_0_#111] sm:text-4xl">$MIM</p>
+
+          <div class="sign mt-5">
+            <span class="nail nail-l" aria-hidden="true"></span>
+            <span class="nail nail-r" aria-hidden="true"></span>
+            <p>Don't forget<br />why we are all here</p>
+          </div>
+
+          <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-cream lg:mx-0">
+            A green hat. A golden staff. A Solana coin at the end of it. We showed up for the meme, and we stay to turn it into money.
+          </p>
+
+          <div class="mt-6 flex justify-center lg:justify-start">
+            <div class="inline-flex max-w-full items-center gap-2 rounded-full border-[3px] border-ink bg-panel p-1.5 pl-4 shadow-sticker">
+              <span class="font-wizard text-lg text-gold">CA</span>
+              <code id="contract" class="max-w-[42vw] truncate font-mono text-sm font-bold text-white sm:max-w-none sm:text-base">TBA</code>
+              <button type="button" class="copy-btn px-4 py-2 text-sm" data-copy>Copy</button>
+            </div>
+          </div>
+
+          <div class="mt-5 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+            <a class="buy-btn glow-pulse px-8 py-3 text-2xl" href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA" target="_blank" rel="noopener noreferrer">Buy Now</a>
+            <a class="chart-btn px-8 py-3 text-2xl" href="https://dexscreener.com/solana/TBA" target="_blank" rel="noopener noreferrer">Chart</a>
+            <a href="https://t.me/MIMsol" target="_blank" rel="noopener noreferrer" class="inline-block h-12 w-12 overflow-hidden rounded-full border-2 border-white/50 transition hover:-rotate-6 hover:scale-110 hover:border-spell">
+              <img src="tg.png" alt="Telegram" width="975" height="997" class="h-full w-full object-cover" />
+            </a>
+            <a href="https://x.com/MIMsol" target="_blank" rel="noopener noreferrer" class="inline-block h-12 w-12 overflow-hidden rounded-full border-2 border-white/50 transition hover:rotate-6 hover:scale-110 hover:border-spell">
+              <img src="x.png" alt="X" width="554" height="554" class="h-full w-full object-cover" />
+            </a>
+          </div>
+
+          <dl class="mx-auto mt-8 grid max-w-xl grid-cols-2 gap-3 lg:mx-0">
+            <div class="rounded-2xl border-[3px] border-ink bg-panel/95 px-4 py-3 text-left shadow-sticker">
+              <dt class="font-wizard text-lg text-gold">Chain</dt>
+              <dd class="font-extrabold text-white">Solana</dd>
+            </div>
+            <div class="rounded-2xl border-[3px] border-ink bg-panel/95 px-4 py-3 text-left shadow-sticker">
+              <dt class="font-wizard text-lg text-gold">Symbol</dt>
+              <dd class="font-extrabold text-white">$MIM</dd>
+            </div>
+            <div class="rounded-2xl border-[3px] border-ink bg-panel/95 px-4 py-3 text-left shadow-sticker">
+              <dt class="font-wizard text-lg text-gold">Swap</dt>
+              <dd class="font-extrabold text-white">SOL → MIM</dd>
+            </div>
+            <div class="rounded-2xl border-[3px] border-ink bg-panel/95 px-4 py-3 text-left shadow-sticker">
+              <dt class="font-wizard text-lg text-gold">Contract</dt>
+              <dd class="font-extrabold text-aqua">TBA</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-6xl px-4 pb-8 sm:px-5" aria-label="Banner">
+        <figure>
+          <div class="rounded-[1.8rem] border-4 border-gold bg-gold p-1.5 shadow-[8px_8px_0_#111,0_0_48px_rgba(182,255,60,0.28)]">
+            <img src="banner.jpg" width="2448" height="816" alt="Memes Into Money banner, the MIM wizard on a cosmic Solana chart" class="h-auto w-full rounded-[1.3rem] border-[3px] border-ink" />
+          </div>
+          <figcaption class="mt-5 text-center">
+            <p class="script-title font-script text-4xl text-aqua sm:text-5xl">Join us.</p>
+            <p class="mt-1 font-extrabold text-cream/85">Don't forget why we are all here.</p>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="reminder" class="mx-auto max-w-6xl px-4 py-20 sm:px-5">
+        <div class="text-center">
+          <div class="hat" aria-hidden="true"></div>
+          <p class="mt-4 font-wizard text-2xl text-gold">The Reminder</p>
+          <h2 class="script-title mx-auto mt-2 max-w-4xl font-script text-[clamp(2.2rem,6vw,4.5rem)] leading-tight text-aqua">Don't forget why we are all here.</h2>
+          <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-cream">
+            A green wizard hat walked onto Solana with a peace sign, a staff, and a wooden sign that says join us. Not for a five-minute candle. For the meme that started it, the magic that keeps it, and the money the name already promised.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-6 md:grid-cols-3">
+          <article class="rounded-3xl border-[3px] border-ink bg-panel/95 p-6 shadow-sticker transition hover:-translate-y-1 hover:shadow-stickerlg">
+            <p class="font-wizard text-lg text-spell">01</p>
+            <h3 class="mt-1 font-meme text-3xl text-spell">The Meme</h3>
+            <p class="mt-3 leading-7 text-cream/95">The hat was waving before anyone asked for a roadmap. If it isn't funny, it isn't $MIM. We are here because the joke was good enough to keep.</p>
+          </article>
+          <article class="rounded-3xl border-[3px] border-ink bg-panel/95 p-6 shadow-sticker transition hover:-translate-y-1 hover:shadow-stickerlg">
+            <p class="font-wizard text-lg text-gold">02</p>
+            <h3 class="mt-1 font-meme text-3xl text-gold">The Magic</h3>
+            <p class="mt-3 leading-7 text-cream/95">A golden staff, a Solana coin, a sky of green candles. Joining is the spell. Holding is the ritual. The wizard does not put the staff down.</p>
+          </article>
+          <article class="rounded-3xl border-[3px] border-ink bg-panel/95 p-6 shadow-sticker transition hover:-translate-y-1 hover:shadow-stickerlg">
+            <p class="font-wizard text-lg text-aqua">03</p>
+            <h3 class="mt-1 font-meme text-3xl text-aqua">The Money</h3>
+            <p class="mt-3 leading-7 text-cream/95">Memes in. Money out. That is the whole name. Swap SOL for $MIM, keep the sign where you can see it, and stay for the reason you clicked.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="how-to-buy" class="mx-auto max-w-6xl px-4 py-12 sm:px-5">
+        <div class="text-center">
+          <div class="hat" aria-hidden="true"></div>
+          <p class="mt-4 font-wizard text-2xl text-gold">Solana spell, four moves</p>
+          <h2 class="mt-1 font-meme text-5xl text-spell drop-shadow-[0_4px_0_#145214] sm:text-6xl">How to Buy</h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg leading-8 text-cream">Four steps. SOL in, $MIM out. Don't forget why we are all here.</p>
+        </div>
+
+        <div class="relative mt-12">
+          <div class="pointer-events-none absolute left-[8%] right-[8%] top-[34px] hidden h-1 bg-gradient-to-r from-transparent via-spell to-transparent shadow-[0_0_14px_#b6ff3c] md:block" aria-hidden="true"></div>
+          <ol class="grid gap-8 md:grid-cols-4">
+            <li class="text-center">
+              <div class="relative z-10 mx-auto grid h-[4.5rem] w-[4.5rem] place-items-center rounded-full border-[3px] border-ink bg-[radial-gradient(circle_at_35%_30%,#fff4c2,#f6c445_42%,#c88810_78%)] font-meme text-4xl text-ink shadow-[3px_3px_0_#111,0_0_18px_rgba(246,196,69,0.45)]" aria-hidden="true">1</div>
+              <article class="mt-5 rounded-3xl border-[3px] border-ink bg-panel/95 p-5 shadow-sticker">
+                <h3 class="font-meme text-2xl text-spell">Summon a Wallet</h3>
+                <p class="mt-3 text-sm leading-6 text-cream/95">Install <a class="font-extrabold text-aqua underline decoration-aqua/40 underline-offset-2 hover:decoration-aqua" href="https://phantom.app/" target="_blank" rel="noopener noreferrer">Phantom</a> or <a class="font-extrabold text-aqua underline decoration-aqua/40 underline-offset-2 hover:decoration-aqua" href="https://solflare.com/" target="_blank" rel="noopener noreferrer">Solflare</a>. Create a wallet and keep the secret phrase offline. That phrase is the only key to the hat.</p>
+              </article>
+            </li>
+            <li class="text-center">
+              <div class="relative z-10 mx-auto grid h-[4.5rem] w-[4.5rem] place-items-center rounded-full border-[3px] border-ink bg-[radial-gradient(circle_at_35%_30%,#fff4c2,#f6c445_42%,#c88810_78%)] font-meme text-4xl text-ink shadow-[3px_3px_0_#111,0_0_18px_rgba(246,196,69,0.45)]" aria-hidden="true">2</div>
+              <article class="mt-5 rounded-3xl border-[3px] border-ink bg-panel/95 p-5 shadow-sticker">
+                <h3 class="font-meme text-2xl text-gold">Fill it with SOL</h3>
+                <p class="mt-3 text-sm leading-6 text-cream/95">Buy SOL on an exchange you trust and send it to your wallet address. Leave a little SOL behind so the network fee can clear.</p>
+              </article>
+            </li>
+            <li class="text-center">
+              <div class="relative z-10 mx-auto grid h-[4.5rem] w-[4.5rem] place-items-center rounded-full border-[3px] border-ink bg-[radial-gradient(circle_at_35%_30%,#fff4c2,#f6c445_42%,#c88810_78%)] font-meme text-4xl text-ink shadow-[3px_3px_0_#111,0_0_18px_rgba(246,196,69,0.45)]" aria-hidden="true">3</div>
+              <article class="mt-5 rounded-3xl border-[3px] border-ink bg-panel/95 p-5 shadow-sticker">
+                <h3 class="font-meme text-2xl text-aqua">Copy the Contract</h3>
+                <p class="mt-3 text-sm leading-6 text-cream/95">Copy the $MIM contract and match every character before you sign. It reads TBA until launch, and Buy Now already carries that same address.</p>
+                <p class="mt-3 font-mono text-sm font-bold text-aqua">CA: TBA</p>
+                <button type="button" class="copy-btn mt-3 px-4 py-2 text-sm" data-copy>Copy CA</button>
+              </article>
+            </li>
+            <li class="text-center">
+              <div class="relative z-10 mx-auto grid h-[4.5rem] w-[4.5rem] place-items-center rounded-full border-[3px] border-ink bg-[radial-gradient(circle_at_35%_30%,#fff4c2,#f6c445_42%,#c88810_78%)] font-meme text-4xl text-ink shadow-[3px_3px_0_#111,0_0_18px_rgba(246,196,69,0.45)]" aria-hidden="true">4</div>
+              <article class="mt-5 rounded-3xl border-[3px] border-ink bg-panel/95 p-5 shadow-sticker">
+                <h3 class="font-meme text-2xl text-spell">Cast the Swap</h3>
+                <p class="mt-3 text-sm leading-6 text-cream/95">Press Buy Now. The swap opens with SOL in and $MIM out. Choose the amount, confirm in your wallet, and the staff finishes the spell.</p>
+                <a class="buy-btn mt-4 inline-block px-5 py-2 text-lg" href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA" target="_blank" rel="noopener noreferrer">Buy Now</a>
+              </article>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="chart" class="mx-auto max-w-6xl px-4 py-20 sm:px-5">
+        <div class="text-center">
+          <p class="font-wizard text-2xl text-gold">Watch the sky</p>
+          <h2 class="mt-1 font-meme text-5xl text-spell drop-shadow-[0_4px_0_#145214] sm:text-6xl">The Sky Chart</h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg leading-8 text-cream">Dexscreener, set into the page. The candles live here. Don't forget why we are all here.</p>
+        </div>
+        <div class="mt-8 overflow-hidden rounded-[1.4rem] border-[3px] border-ink bg-[#07010f] shadow-stickerlg">
+          <iframe
+            title="Dexscreener chart for MIM on Solana"
+            src="https://dexscreener.com/solana/TBA?embed=1&loadChartSettings=0&trades=0&tabs=0&info=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=1&chartType=usd&interval=15"
+            class="h-[460px] w-full md:h-[620px]"
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="mt-6 text-center">
+          <a class="chart-btn inline-block px-8 py-3 text-2xl" href="https://dexscreener.com/solana/TBA" target="_blank" rel="noopener noreferrer">Open Chart</a>
+        </div>
+      </section>
+
+      <section class="relative px-4 py-20 text-center sm:px-5">
+        <div class="pointer-events-none absolute inset-x-0 top-0 mx-auto h-72 max-w-3xl bg-[radial-gradient(ellipse_at_center,rgba(182,255,60,0.16),transparent_68%)]" aria-hidden="true"></div>
+        <div class="relative">
+          <div class="hat" aria-hidden="true"></div>
+          <p class="mt-4 font-wizard text-2xl text-gold">The sign still says</p>
+          <h2 class="script-title mx-auto mt-2 max-w-4xl font-script text-[clamp(2.3rem,6vw,4.6rem)] leading-tight text-aqua">Don't forget why we are all here.</h2>
+          <p class="mx-auto mt-4 max-w-xl text-lg leading-8 text-cream">The wizard is already waving. SOL on the table. $MIM on the staff.</p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <a class="buy-btn glow-pulse px-8 py-3 text-2xl" href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA" target="_blank" rel="noopener noreferrer">Buy Now</a>
+            <a class="chart-btn px-8 py-3 text-2xl" href="https://dexscreener.com/solana/TBA" target="_blank" rel="noopener noreferrer">Chart</a>
+            <a href="https://t.me/MIMsol" target="_blank" rel="noopener noreferrer" class="inline-block h-12 w-12 overflow-hidden rounded-full border-2 border-white/50 transition hover:-rotate-6 hover:scale-110 hover:border-spell">
+              <img src="tg.png" alt="Telegram" width="975" height="997" class="h-full w-full object-cover" />
+            </a>
+            <a href="https://x.com/MIMsol" target="_blank" rel="noopener noreferrer" class="inline-block h-12 w-12 overflow-hidden rounded-full border-2 border-white/50 transition hover:rotate-6 hover:scale-110 hover:border-spell">
+              <img src="x.png" alt="X" width="554" height="554" class="h-full w-full object-cover" />
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t-[3px] border-ink bg-black/55 px-5 pb-28 pt-10 text-center md:pb-10">
+      <img src="logo.jpg" alt="" width="400" height="400" class="mx-auto h-16 w-16 rounded-2xl border-2 border-ink bg-white object-cover" />
+      <p class="mt-3 font-meme text-2xl text-spell">Memes Into Money</p>
+      <p class="script-title font-script text-2xl text-aqua">Don't forget why we are all here.</p>
+      <p class="mx-auto mt-3 max-w-md text-sm leading-6 text-cream/70">$MIM is a meme coin on Solana. Not financial advice. Do your own research before you swap.</p>
+      <p class="mt-3 text-xs font-bold uppercase tracking-[0.16em] text-cream/45">© 2026 Memes Into Money · $MIM</p>
+    </footer>
+
+    <div class="fixed inset-x-0 bottom-0 z-40 flex gap-2 border-t-[3px] border-ink bg-[#07010f]/95 p-3 backdrop-blur md:hidden">
+      <a class="buy-btn flex-1 py-3 text-lg" href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA" target="_blank" rel="noopener noreferrer">Buy Now</a>
+      <a class="chart-btn flex-1 py-3 text-lg" href="https://dexscreener.com/solana/TBA" target="_blank" rel="noopener noreferrer">Chart</a>
+    </div>
+
+    <div id="toast" role="status" aria-live="polite" class="pointer-events-none fixed bottom-24 left-1/2 z-[60] -translate-x-1/2 translate-y-2 rounded-full border-[3px] border-ink bg-spell px-5 py-2 font-meme text-lg text-[#102006] opacity-0 shadow-sticker transition duration-300 md:bottom-8"></div>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    function setMenu(open) {
+      mobileMenu.classList.toggle("hidden", !open);
+      menuBtn.classList.toggle("is-open", open);
+      menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }
+
+    menuBtn.addEventListener("click", () => {
+      setMenu(mobileMenu.classList.contains("hidden"));
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setMenu(false));
+    });
+
+    const toast = document.getElementById("toast");
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = "";
+      toast.classList.add("translate-y-2", "opacity-0");
+      requestAnimationFrame(() => {
+        toast.textContent = message;
+        toast.classList.remove("translate-y-2", "opacity-0");
+      });
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add("translate-y-2", "opacity-0");
+      }, 1700);
+    }
+
+    async function copyText(text) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          return true;
+        }
+      } catch (error) {}
+      try {
+        const area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.left = "-9999px";
+        document.body.appendChild(area);
+        area.select();
+        const ok = document.execCommand("copy");
+        area.remove();
+        return ok;
+      } catch (error) {
+        return false;
+      }
+    }
+
+    document.addEventListener("click", async (event) => {
+      const button = event.target.closest("[data-copy]");
+      if (!button) return;
+      const address = document.getElementById("contract").textContent.trim();
+      const copied = await copyText(address);
+      showToast(copied ? "Contract copied" : "Select the address and copy it");
+    });
+  </script>
+</body>
+</html>
